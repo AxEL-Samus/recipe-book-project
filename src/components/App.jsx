@@ -1,7 +1,16 @@
-import React from 'react'
+import React from 'react';
+import { Route, Routes } from 'react-router-dom';
+import Card from './Card';
+import Header from './Header';
 
 export default function App() {
   return (
-    <div>App</div>
-  )
+    <>
+      <Header />
+      <Card />
+      {/* <Routes>
+        <Route path="/api/:id" element={<Card />} />
+      </Routes> */}
+    </>
+  );
 }
