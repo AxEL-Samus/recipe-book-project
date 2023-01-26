@@ -28,6 +28,25 @@ entriesRouter.post('/signup', async (req, res) => {
   }
 });
 
+entriesRouter.post('/login', async (req, res) => {
+  try {
+    const { email, pass } = req.body;
+    const foundUser = await User.findOne({
+      where: { email },
+    });
+    if (!(foundUser && await bcrypt.compare(pass, foundUser.pass))) {
+      return res.sendStatus(401);
+    }
+    const user = JSON.parse(JSON.stringify(foundUser));
+    delete user.pass;
+    req.session.user = user;
+    return res.sendStatus(200);
+  } catch (err) {
+    console.log(err);
+    return res.sendStatus(500);
+  }
+});
+
 entriesRouter.get('/logout', (req, res) => {
   req.session.destroy();
   res.clearCookie('user_sid');
