@@ -1,0 +1,19 @@
+.content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.innerContent {
+    display: flex;
+    flex-direction: row;
+}
+
+.dish-btn {
+    display: flex;
+    flex-direction: row;
+}
+
+.btn {
+    border-radius: 5px;
+}
