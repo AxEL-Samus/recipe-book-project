@@ -7,6 +7,7 @@ function Recipe() {
   const [search, setSearch] = useState();
   const [show, setShow] = useState(false);
   const [item, setItem] = useState("");
+  c
   const [url, setUrl] = useState(
     "https://www.themealdb.com/api/json/v1/1/search.php?f=a"
   );
