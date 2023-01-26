@@ -22,22 +22,24 @@ function Recipe() {
       });
   }, [url]);
 
-  useEffect(() => {
+  //кнопки
+
+  useEffect(() => { 
     fetch("https://www.themealdb.com/api/json/v1/1/list.php?c=list")
       .then((res) => res.json())
       .then((data) => {
         console.log(data.meals);
-        setCat(data.meals.map((el) => el.strCategory));
+        setList(data.meals.map((el) => el.strCategory));
       });
   }, []);
 
-  useEffect(() => {
-    fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?c=${cat}`)
-      .then((res) => res.json())
-      .then((data) => {
-        setItem(data.meals)
-      });
-  }, []);
+  // useEffect(() => {
+  //   fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?c=${cat}`)
+  //     .then((res) => res.json())
+  //     .then((data) => {
+  //       setItem(data.meals)
+  //     });
+  // }, []);
 
   console.log(list);
 
