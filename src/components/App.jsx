@@ -1,7 +1,13 @@
-import React from 'react'
+import React from "react";
+import { Routes, Route } from "react-router-dom";
+import Recipe from "./Recipe";
 
 export default function App() {
   return (
-    <div>App</div>
-  )
+    <>
+      <Routes>
+        <Route path="/" element={<Recipe />} />
+      </Routes>
+    </>
+  );
 }

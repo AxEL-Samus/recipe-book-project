@@ -1,12 +1,12 @@
 import express from 'express';
 import { Recipe } from '../../db/models';
 
-const entriesRouter = express.Router();
+const recipeRouter = express.Router();
 
-entriesRouter.get('/', async (req, res) => {
-  const entries = await Recipe.findAll();
-  const initState = { entries };
+recipeRouter.get('/', async (req, res) => {
+  const recipes = await Recipe.findAll();
+  const initState = { recipes };
   res.render('Layout', initState);
 });
 
-export default entriesRouter;
+export default recipeRouter;

@@ -5,6 +5,7 @@ import store from "session-file-store";
 import indexRouter from "./routes/indexRouter";
 import apiRouter from "./routes/apiRouter";
 import jsxRender from "./utils/jsxRender";
+import path from 'path';
 
 require("dotenv").config();
 
@@ -24,9 +25,9 @@ const sessionConfig = {
   },
 };
 
-app.engine('jsx', jsxRender);
-app.set('view engine', 'jsx');
-app.set('views', path.join(__dirname, 'components'));
+app.engine("jsx", jsxRender);
+app.set("view engine", "jsx");
+app.set("views", path.join(__dirname, "components"));
 
 app.use(express.static("public"));
 app.use(morgan("dev"));
@@ -34,7 +35,14 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(session(sessionConfig));
 
+app.use((req, res, next) => {
+  res.locals.path = req.originalUrl;
+  res.locals.user = req.session.user;
+  next();
+});
+
 app.use("/", indexRouter);
 app.use("/api/", apiRouter);
+//app.use("/api/user/", apiUserRouter);
 
 app.listen(PORT, () => console.log(`App has started on port ${PORT}`));
