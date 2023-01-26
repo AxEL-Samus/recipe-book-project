@@ -6,15 +6,23 @@
 
 // export default router;
 
-import express from 'express';
-import { Recipe } from '../../db/models';
+import express from "express";
 
-const entriesRouter = express.Router();
+const router = express.Router();
 
-entriesRouter.get('/', async (req, res) => {
-  const entries = await Recipe.findAll();
-  const initState = { entries };
-  res.render('Layout', initState);
+router.get("/", async (req, res) => res.render("Layout"));
+
+router.get("/login", (req, res) => {
+  res.render("Layout");
 });
 
-export default entriesRouter;
+router.get("/signup", (req, res) => {
+  res.render("Layout");
+});
+
+router.get("/logout", (req, res) => {
+  req.session.destroy();
+  res.clearCookie("user_sid");
+  res.redirect("/");
+});
+export default router;

@@ -10,6 +10,8 @@ function Recipe() {
   const [url, setUrl] = useState(
     "https://www.themealdb.com/api/json/v1/1/search.php?f=a"
   );
+  const [list, setList] = useState([]);
+  const [cat, setCat] = useState({})
 
   useEffect(() => {
     fetch(url)
@@ -20,18 +22,42 @@ function Recipe() {
       });
   }, [url]);
 
+  useEffect(() => {
+    fetch("https://www.themealdb.com/api/json/v1/1/list.php?c=list")
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data.meals);
+        setCat(data.meals.map((el) => el.strCategory));
+      });
+  }, []);
+
+  useEffect(() => {
+    fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?c=${cat}`)
+      .then((res) => res.json())
+      .then((data) => {
+        setItem(data.meals)
+      });
+  }, []);
+
+  console.log(list);
+
   const searchRecipe = (julia) => {
     setUrl(`https://www.themealdb.com/api/json/v1/1/search.php?s=${search}`);
   };
   const findRecipe = (find) => {
     setUrl(`https://www.themealdb.com/api/json/v1/1/search.php?f=${find}`);
   };
+
+  function buttonHandler(nameTag){
+  setCat(nameTag)
+  }
+
+  console.log(item)
   return (
     <>
       <div className="main">
         <div className="heading">
-          <h1>Search recipe</h1>
-          <h4>JULIA TARASOVA</h4>
+          <h4>Search recipe:</h4>
         </div>
         <div className="searchBox">
           <input
@@ -40,6 +66,9 @@ function Recipe() {
             onChange={(e) => setSearch(e.target.value)}
             onKeyPress={searchRecipe}
           />
+          {list.map((el) => (
+            <button onClick={() => buttonHandler(el)}>{el}</button>
+          ))}
         </div>
         <div className="container">
           {show ? <Absorber data={item} /> : "Not Found"}
