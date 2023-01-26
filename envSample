@@ -1,4 +1,4 @@
-DB_USER=admin
+DB_USER=bob
 DB_PASSWORD=123
 DB_NAME=recipebook
 DB_HOST=127.0.0.1
