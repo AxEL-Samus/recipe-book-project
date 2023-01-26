@@ -79,7 +79,7 @@ export default function Card() {
         </div>
         <div className="video">
 
-          <iframe src={`https://www.youtube.com/embed/${vId}`} />
+          <iframe className='ifr' src={`https://www.youtube.com/embed/${vId}`} />
         </div>
       </div>
     </>
