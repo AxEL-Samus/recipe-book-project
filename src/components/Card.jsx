@@ -6,7 +6,13 @@ export default function Card({ user }) {
   const { id } = useParams();
   const userId = user.id;
   const [item, setItem] = useState({});
-  const [favor, setFavor] = useState(false);
+  const [favor, setFavor] = useState();
+
+  useEffect(() => {
+    axios(`http://localhost:3002/api/user/favoristes/${id}/${userId}`)
+      .then((res) => setFavor(res.data));
+  }, []);
+
   // if (id !== '') {
   useEffect(() => {
     try {

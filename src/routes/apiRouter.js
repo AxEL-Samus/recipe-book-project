@@ -11,7 +11,7 @@
 
 // export default recipeRouter;
 
-import express from 'express';
+import express, { response } from 'express';
 import bcrypt from 'bcrypt';
 import { User, Recipe } from '../../db/models';
 
@@ -81,7 +81,7 @@ entriesRouter.get('/collection', (req, res) => {
 entriesRouter.post('/favoristes/:id/:userId', async (req, res) => {
   try {
     const { id, userId } = req.params;
-    console.log(id, 'ewedfwf', userId)
+    // console.log(id, 'ewedfwf', userId);
     const recepieArr = await Recipe.findOne({ where: { mealId: id, userId } });
 
     if (recepieArr) {
@@ -94,6 +94,19 @@ entriesRouter.post('/favoristes/:id/:userId', async (req, res) => {
   } catch (error) {
     console.log(error);
     res.sendStatus(401);
+  }
+});
+
+entriesRouter.get('/favoristes/:id/:userId', async (req, res) => {
+  try {
+    const { id, userId } = req.params;
+    const state = await Recipe.findOne({ where: { mealId: id, userId } });
+    console.log(state);
+    if (state != null) {
+      res.json(true);
+    } else res.json(false);
+  } catch (error) {
+    console.log(error);
   }
 });
 
