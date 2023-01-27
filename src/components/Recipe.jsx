@@ -59,7 +59,7 @@ function Recipe() {
   return (
     <div className="main">
       <div className="heading">
-        <h4>Search recipe:</h4>
+        <h4 className='searchRecipe'>Search recipe:</h4>
       </div>
       <div className="searchBox">
         <input

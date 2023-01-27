@@ -1,6 +1,7 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Card from './Card';
+import Collection from './Collection';
 import Header from './Header';
 import LoginPage from './LoginPage';
 import Recipe from './Recipe';
@@ -16,6 +17,7 @@ export default function App({ user }) {
         <Route path="/logout" element={<Recipe />} />
         <Route path="/:id" element={<Card user={user} />} />
         <Route path="/" element={<Recipe />} />
+        <Route path='/collection' element={<Collection user={user} />} />
       </Routes>
     </>
   );

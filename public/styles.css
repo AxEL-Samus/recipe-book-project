@@ -1,0 +1,88 @@
+body {
+  background-color: rgba(218, 170, 93, 0.512);
+  /* display: flex;
+  justify-content: center;
+  align-items: center; */
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.innerContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 100px;
+  margin-bottom: 50px;
+}
+
+.dish-btn {
+  display: flex;
+  flex-direction: row;
+margin-top: 20px;
+}
+
+.btn {
+  border-radius: 5px;
+  color: orange;
+  border: 2px solid black;
+  background-color: darkgreen;
+  margin: 0 20px 0 10px;
+}
+
+
+.recepie-details {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.instructions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 50%;
+  margin-top: 50px;
+}
+h2{
+    margin-bottom: 15px;
+}
+
+.video-frame {
+  margin: 0 auto;
+  width: 1000px;
+  height: 500px;
+  text-align: center;
+  margin: 50px 0 100px 0;
+}
+
+.ifr {
+  text-align: center;
+  width: 100%;
+  height: 1000px;
+}
+
+.card {
+  width: 400px;
+  margin-bottom: 10px;
+}
+.container {
+  display: flex;
+  width: 850px;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+.searchBox {
+  display: flex;
+  justify-content: space-around;
+  margin: 5px 0;
+}
+.innerImg{
+    border-radius: 20px;
+}
+.searchRecipe{
+    margin: 10px;
+}
