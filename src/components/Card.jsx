@@ -2,9 +2,17 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
-export default function Card() {
+export default function Card({ user }) {
   const { id } = useParams();
+  const userId = user.id;
   const [item, setItem] = useState({});
+  const [favor, setFavor] = useState();
+
+  useEffect(() => {
+    axios(`http://localhost:3002/api/user/favoristes/${id}/${userId}`)
+      .then((res) => setFavor(res.data));
+  }, []);
+
   // if (id !== '') {
   useEffect(() => {
     try {
@@ -32,8 +40,13 @@ export default function Card() {
     const str = ourUrl.split('=');
     vId = str[str.length - 1];
   }
-  const clickHandler = () => {
-
+  const addFavor = () => {
+    axios.post(`http://localhost:3002/api/user/favoristes/${id}/${userId}`);
+    setFavor(true);
+  };
+  const deleteFavor = () => {
+    axios.post(`http://localhost:3002/api/user/favoristes/${id}/${userId}`);
+    setFavor(false);
   };
   return (
     <>
@@ -42,7 +55,9 @@ export default function Card() {
           <img src={item.strMealThumb} alt="" />
           <div className="dish-btn">
             <h1>{item.strMeal}</h1>
-            <button className="btn" type="button" onClick={clickHandler}>Add to favourites</button>
+            {!favor
+              ? <button className="btn" type="button" onClick={addFavor}>Add to favourites</button>
+              : <button className="btn" type="button" onClick={deleteFavor}>Remove from favourites</button>}
           </div>
           <h4>
             {item.strArea}
